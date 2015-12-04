@@ -11,6 +11,7 @@
   [count]
   (require 'digest)
   (loop [k key n 0]
-    (if ( =  (clojure.string/join (repeat count "0")) (subs (digest/md5 (str k n)) 0 count))
+    (if (= (clojure.string/join (repeat count "0"))
+           (subs (digest/md5 (str k n)) 0 count))
       (println n)
       (recur key (inc n)))))
