@@ -1,0 +1,10 @@
+* 1st. steps
+  1) join the whole file into one line, wc  and substract one (the last carryage return)
+  2) run 08.pl
+  3) substract
+* 2nd. steps
+  1) 300 line file. Every line adds 2 extra quotes
+  2) every quote adds an extra char (the associated backslash)
+  3) every backslash adds an extra char (the associated backslash)
+
+  echo "$(fgrep -o '\' input.txt |wc -l) + $(fgrep -o '"' input.txt |wc -l) + $(wc -l input.txt | awk '{print $1}') + $(wc -l input.txt | awk '{print $1}')" | bc -i
