@@ -5,3 +5,19 @@
   3) Lua
   4) Clojure
   5) Perl5
+
+
+* Options for next challenges:
+  - julia
+  - dylan
+  - bash
+  - C
+  - python
+  - shellscript
+  - awk/sed
+  - factor
+  - commonlisp
+  - scheme (guile)
+  - emacslisp
+  - smalltalk
+  - Ocaml

@@ -1,0 +1,67 @@
+
+* look-n-say
+** Emacs is sloooow
+    (defun aaa (x)
+  (let  ((l (match-string 0)))
+    (format "%s%s" (length l) (substring l 0 1))))
+
+(defun look-and-say (num)
+  (let ((b (generate-new-buffer "t")))
+    (with-current-buffer b
+      (insert num))
+    (map-regex b "\\(\.\\)\\1*"
+               #'aaa)))
+
+
+(length (my-l-a-s  "3113322113" 40))
+(my-l-a-s  "111221" 5)
+                                        ; "13112221"
+                                        ; "1113213211"
+(defun list-to-string (l)
+  (mapconcat 'identity l ""))
+
+(defun my-l-a-s (num its)
+  (if ( = its 0)
+      num
+    (my-l-a-s (list-to-string
+               (look-and-say num))
+              (- its 1))))
+
+(defun tt ()
+  (mapcar (lambda (x) (mapconcat 'identity (list (number-to-string (length x)) (substring x 0 1)) "")) '("3" "2")))
+
+
+   (defun map-regex (buffer regex fn)
+     "Map the REGEX over the BUFFER executing FN.
+
+   FN is called with the match-data of the regex.
+
+   Returns the results of the FN as a list."
+     (with-current-buffer buffer
+       (save-excursion
+         (goto-char (point-min))
+         (let (res)
+           (save-match-data
+             (while (re-search-forward regex nil t)
+               (let ((f (match-data)))
+                 (setq res
+                       (append res
+                               (list
+                                (save-match-data
+                                  (funcall fn f))))))))
+           res))))
+
+**   The ruby one was wrong
+~/10  8s
+â¯ julia 10.jl
+329356
+
+~/10  27s
+â¯ ruby 10.rb
+316140
+
+** I learned a lot about:
+   - julia
+   - Conway's constant
+   - Conway's chemical elements
+   - Interning strings makes it go REALLY slow
